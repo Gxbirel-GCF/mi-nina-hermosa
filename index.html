@@ -14,7 +14,7 @@ font-family: Arial, sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#8e2de2,#ff6fd8);
+background:linear-gradient(110deg,#ff758c,#ff7eb3);
 overflow:hidden;
 height:100vh;
 display:flex;
@@ -29,7 +29,15 @@ z-index:2;
 padding:20px;
 max-width:350px;
 }
-
+.caja-texto{
+background: rgba(255,255,255,0.18);
+backdrop-filter: blur(10px);
+padding: 10px;
+border-radius: 40px;
+margin-top: 15px;
+box-shadow: 0 0 20px rgba(0,0,0,.15);
+border: 1px solid rgba(255,255,255,.3);
+}
 .carta{
 font-size:100px;
 cursor:pointer;
@@ -47,8 +55,8 @@ display:none;
 }
 
 .foto{
-width:240px;
-height:240px;
+width:300px;
+height:300px;
 object-fit:cover;
 border-radius:40px;
 border:4px solid white;
@@ -89,6 +97,22 @@ transform:translateY(-10vh);
 opacity:0;
 }
 }
+.boton-sorpresa{
+background: white;
+color: #ff4d79;
+border: none;
+padding: 14px 25px;
+font-size: 17px;
+border-radius: 30px;
+cursor: pointer;
+margin-top: 20px;
+transition: .3s;
+box-shadow: 0 4px 15px rgba(0,0,0,.2);
+}
+
+.boton-sorpresa:hover{
+transform: scale(1.08);
+}
 </style>
 </head>
 <body>
@@ -103,19 +127,27 @@ opacity:0;
 <div id="contenido" class="oculto">
 <img src="amol.jpeg" class="foto">
 
-<h1>Para la niña mas bonita de todo mi universo🥺❤️</h1>
+<div class="caja-texto">
+<h1>PARA LA NIÑA MAS BONITA DE MI UNIVERSO🥺❤️</h1>
+</div>
 
-<p id="mensaje"></p>
+<div class="caja-texto">
+    <p id="mensaje"></p>
+</div>
 
 <div id="contador"></div>
 
+<button onclick="window.location.href='sorpresa.html'" class="boton-sorpresa">
+💌 Tengo otra sorpresa para ti
+</button>
 <audio id="musica" loop>
 <source src="ssstik.io_1778484770943.mp3" type="audio/mpeg">
 </audio>
 </div>
 
-</div>
 
+</div>
+<div class="container">
 <script>
 
 const texto = `Hola mi niña Hermosa, quiero que sepas que apesar de todo lo que pase y pasara nada ni nadie cambiara lo que siento por ti,
@@ -152,18 +184,24 @@ const horas = Math.floor((diferencia / (1000*60*60)) % 24);
 const minutos = Math.floor((diferencia / (1000*60)) % 60);
 
 document.getElementById("contador").innerHTML =
-`❤️ Llevamos juntos ${dias} días, ${horas} horas y ${minutos} minutos ❤️`;
+`❤️ Llevamos juntos ${dias} días, ${horas} horas , ${minutos} minutos y lo que nos falta❤️`;
+
 }
 
 setInterval(actualizarContador,1000);
 
 function crearCorazon(){
+
+const emojis = ["❤️","💖","💕","💘","💞","🌹","✨"];
+
 const heart = document.createElement("div");
 heart.className="heart";
-heart.innerHTML="❤️";
 
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+15)+"px";
+heart.innerHTML =
+emojis[Math.floor(Math.random() * emojis.length)];
+
+heart.style.left = Math.random()*100+"vw";
+heart.style.fontSize = (Math.random()*20+15)+"px";
 
 document.body.appendChild(heart);
 
@@ -172,7 +210,8 @@ heart.remove();
 },6000);
 }
 
-setInterval(crearCorazon,400);
+setInterval(crearCorazon,500);
+
 
 </script>
 
