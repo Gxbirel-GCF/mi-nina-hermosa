@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Playlist ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa: #ff758c;
+            --fondo: #fce4ec;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #ffd1ff 100%);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #444;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d81b60;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            margin-bottom: 40px;
+            font-size: 1rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        /* Contenedor de los Discos */
+        .playlist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 600px;
+        }
+
+        @media (max-width: 500px) {
+            .playlist-grid { grid-template-columns: 1fr; }
+        }
+
+        .song-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .song-card:hover { transform: translateY(-5px); }
+
+        /* Estilo del Vinilo */
+        .vinilo-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .vinilo {
+            width: 100%;
+            height: 100%;
+            background: #333;
+            background-image: repeating-radial-gradient(circle, #222, #333 5px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.5s;
+        }
+
+        /* Foto en el centro del disco */
+        .foto-centro {
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        /* Animación de giro */
+        .playing .vinilo {
+            animation: girar 4s linear infinite;
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .song-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 10px 0 5px;
+            color: #d81b60;
+        }
+
+        .song-desc {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .reproduciendo-txt {
+            font-size: 12px;
+            color: #ff4d79;
+            margin-top: 5px;
+            display: none;
+            font-weight: bold;
+        }
+
+        .playing .reproduciendo-txt { display: block; }
+
+    </style>
+</head>
+<body>
+
+    <h1>Nuestra Playlist ❤️</h1>
+    <p class="subtitle">Toca un disco para escuchar lo que siento por ti</p>
+
+    <div class="playlist-grid">
+        <!-- CANCIÓN 1 -->
+        <div class="song-card" id="card1">
+            <div class="vinilo-wrapper" onclick="controlarMusica(1)">
+                <div class="vinilo">
+                    <div class="foto-centro" style="background-image: url('foto1.jpg');"></div>
+                </div>
+            </div>
+            <p class="song-title">Canción Especial 1</p>
+            <p class="song-desc">"Porque me recuerdas a..."</p>
+            <p class="reproduciendo-txt">Escuchando... 🎶</p>
+            <audio id="audio1" src="cancion1.mp3"></audio>
+        </div>
+
+        <!-- CANCIÓN 2 -->
+        <div class="song-card" id="card2">
+            <div class="vinilo-wrapper" onclick="controlarMusica(2)">
+                <div class="vinilo">
+                    <div class="foto-centro" style="background-image: url('foto2.jpg');"></div>
+                </div>
+            </div>
+            <p class="song-title">Canción Especial 2</p>
+            <p class="song-desc">"Nuestra primera cita"</p>
+            <p class="reproduciendo-txt">Escuchando... 🎶</p>
+            <audio id="audio2" src="cancion2.mp3"></audio>
+        </div>
+
+        <!-- CANCIÓN 3 -->
+        <div class="song-card" id="card3">
+            <div class="vinilo-wrapper" onclick="controlarMusica(3)">
+                <div class="vinilo">
+                    <div class="foto-centro" style="background-image: url('foto3.jpg');"></div>
+                </div>
+            </div>
+            <p class="song-title">Canción Especial 3</p>
+            <p class="song-desc">"Lo que te quiero decir"</p>
+            <p class="reproduciendo-txt">Escuchando... 🎶</p>
+            <audio id="audio3" src="cancion3.mp3"></audio>
+        </div>
+
+        <!-- CANCIÓN 4 -->
+        <div class="song-card" id="card4">
+            <div class="vinilo-wrapper" onclick="controlarMusica(4)">
+                <div class="vinilo">
+                    <div class="foto-centro" style="background-image: url('foto4.jpg');"></div>
+                </div>
+            </div>
+            <p class="song-title">Canción Especial 4</p>
+            <p class="song-desc">"Por siempre tú y yo"</p>
+            <p class="reproduciendo-txt">Escuchando... 🎶</p>
+            <audio id="audio4" src="cancion4.mp3"></audio>
+        </div>
+    </div>
+
+    <script>
+        function controlarMusica(id) {
+            const todosLosAudios = document.querySelectorAll('audio');
+            const todasLasCards = document.querySelectorAll('.song-card');
+            const audioSeleccionado = document.getElementById('audio' + id);
+            const cardSeleccionada = document.getElementById('card' + id);
+
+            // Si ya está sonando, lo pausamos
+            if (!audioSeleccionado.paused) {
+                audioSeleccionado.pause();
+                cardSeleccionada.classList.remove('playing');
+            } else {
+                // Detener todos los demás antes de empezar este
+                todosLosAudios.forEach(a => {
+                    a.pause();
+                    a.currentTime = 0;
+                });
+                todasLasCards.forEach(c => c.classList.remove('playing'));
+
+                // Play al seleccionado
+                audioSeleccionado.play();
+                cardSeleccionada.classList.add('playing');
+            }
+        }
+    </script>
+</body>
+</html>
